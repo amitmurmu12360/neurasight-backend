@@ -1,0 +1,18 @@
+# Dependency folders
+node_modules/
+venv/
+.env
+.env.local
+
+# Build folders
+.next/
+dist/
+build/
+
+# Python caches
+__pycache__/
+*.pyc
+
+# IDE folders
+.vscode/
+.cursor/
