@@ -253,32 +253,33 @@ MODEL_NAME = "models/gemini-2.0-flash"
 logger.info("[SYSTEM] Gemini 2.0 Flash Bridge Active.")
 
 # Safety settings: Prevent false positives on business data
+# Safety settings: Prevent false positives on business data
 safety_settings = [
-    types.SafetySetting(
-        category="HARM_CATEGORY_HARASSMENT",
-        threshold="BLOCK_ONLY_HIGH",
-    ),
-    types.SafetySetting(
-        category="HARM_CATEGORY_HATE_SPEECH",
-        threshold="BLOCK_ONLY_HIGH",
-    ),
-    types.SafetySetting(
-        category="HARM_CATEGORY_SEXUALLY_EXPLICIT",
-        threshold="BLOCK_ONLY_HIGH",
-    ),
-    types.SafetySetting(
-        category="HARM_CATEGORY_DANGEROUS_CONTENT",
-        threshold="BLOCK_ONLY_HIGH",
-    ),
+    {
+        "category": "HARM_CATEGORY_HARASSMENT",
+        "threshold": "BLOCK_ONLY_HIGH",
+    },
+    {
+        "category": "HARM_CATEGORY_HATE_SPEECH",
+        "threshold": "BLOCK_ONLY_HIGH",
+    },
+    {
+        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "threshold": "BLOCK_ONLY_HIGH",
+    },
+    {
+        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "threshold": "BLOCK_ONLY_HIGH",
+    },
 ]
 
 # Generation config for strategic responses (includes safety settings)
-generation_config = types.GenerateContentConfig(
-    temperature=0.15,  # Low for precision, slight creativity
-    top_p=0.95,
-    max_output_tokens=1000,  # Increased for Chain-of-Thought
-    safety_settings=safety_settings,
-)
+generation_config = {
+    "temperature": 0.15,  # Low for precision, slight creativity
+    "top_p": 0.95,
+    "max_output_tokens": 1000,
+    "safety_settings": safety_settings,
+}
 
 logger.info(f"✅ Gemini client initialized with model: {MODEL_NAME}")
 
