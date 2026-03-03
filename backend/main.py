@@ -29,7 +29,7 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-from google import genai
+import google.generativeai as genai
 from google.genai import types
 from google.api_core import exceptions as google_exceptions
 from googleapiclient.discovery import build
