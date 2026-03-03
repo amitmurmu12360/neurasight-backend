@@ -29,8 +29,7 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-import google.generativeai as genai
-from google.genai import types
+from google import genai
 from google.api_core import exceptions as google_exceptions
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -234,7 +233,7 @@ app.add_middleware(
 
 
 # =============================================================================
-# 6. GEMINI AI CONFIGURATION (Using new google.genai SDK with v1 API)
+# 6. GEMINI AI CONFIGURATION (Official google-genai SDK)
 # =============================================================================
 api_key = os.getenv("GEMINI_API_KEY")
 if not api_key:
@@ -244,15 +243,11 @@ if not api_key:
 masked_key = f"{api_key[:8]}...{api_key[-4:]}" if len(api_key) > 12 else "***"
 logger.info(f"🔑 GEMINI_API_KEY loaded: {masked_key}")
 
-# Initialize the new Genai Client - FORCE v1 API (not v1beta)
-# Explicitly set API version to v1 via http_options
-client = genai.Client(
-    api_key=api_key,
-    http_options={"api_version": "v1"}  # Force v1 API endpoint
-)
+# Initialize official Gemini client (no deprecated SDK usage, no mixed SDK usage)
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Model configuration - using verified accessible model
-MODEL_NAME = "models/gemini-2.0-flash"  # Verified accessible model (v1 API)
+MODEL_NAME = "models/gemini-2.0-flash"
 
 # Pre-flight startup log
 logger.info("[SYSTEM] Gemini 2.0 Flash Bridge Active.")
@@ -285,7 +280,7 @@ generation_config = types.GenerateContentConfig(
     safety_settings=safety_settings,
 )
 
-logger.info(f"✅ Gemini client initialized with model: {MODEL_NAME} (FORCED v1 API via http_options)")
+logger.info(f"✅ Gemini client initialized with model: {MODEL_NAME}")
 
 
 # =============================================================================
@@ -309,8 +304,7 @@ def generate_smart_response(prompt: str, max_retries: int = 3) -> Optional[str]:
         try:
             logger.info(f"Gemini request attempt {attempt}/{max_retries}")
 
-            # Use google.genai SDK with FORCED v1 API (via http_options in client init)
-            # Client was initialized with http_options={'api_version': 'v1'} to force v1 endpoint
+            # Use official google-genai SDK
             response = client.models.generate_content(
                 model=MODEL_NAME,  # "models/gemini-2.0-flash"
                 contents=prompt,
@@ -333,10 +327,9 @@ def generate_smart_response(prompt: str, max_retries: int = 3) -> Optional[str]:
             # Check if it's a model name or API version issue
             if "v1beta" in error_str or "models/" in error_str:
                 logger.error(
-                    "⚠️  API Version Issue Detected:\n"
-                    "   - The SDK may be defaulting to v1beta API despite forced v1\n"
+                    "⚠️  API Version / Model Name Issue Detected:\n"
+                    "   - The SDK may be hitting a different API endpoint than expected\n"
                     "   - Model name might have double prefix (models/models/...)\n"
-                    "   - Solution: Verify http_options={'api_version': 'v1'} in client initialization\n"
                     "   - Current model: " + MODEL_NAME
                 )
 
