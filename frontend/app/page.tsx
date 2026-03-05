@@ -275,7 +275,8 @@ export default function Home() {
   const [isAwaitingCommand, setIsAwaitingCommand] = useState(false);
   const [decisionOptions, setDecisionOptions] = useState<StrategicOption[]>([]);
   const [activeStrategyId, setActiveStrategyId] = useState<"aggressive" | "balanced" | "defensive" | null>(null);
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   // Onboarding & Auth State
   const [showWelcome, setShowWelcome] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
@@ -1309,7 +1310,7 @@ export default function Home() {
         setTimeout(() => pulseEffect.remove(), 2000);
         
         // Refresh data after successful execution
-        if (connection.isConnected && refreshSheets) {
+        if (connection.isConnected) {
           setTimeout(() => {
             refreshSheets();
           }, 1000);
@@ -1398,7 +1399,7 @@ export default function Home() {
     const handleSheetConnectSuccess = (event: Event) => {
       const customEvent = event as CustomEvent;
       // Silent sync - no log needed for routine operations
-      if (connection.isConnected && refreshSheets) {
+      if (connection.isConnected) {
         performSync();
       }
     };
@@ -1420,7 +1421,7 @@ export default function Home() {
     const timeSinceLastSync = now - lastSyncTimeRef.current;
 
     // If data is stale (> 60 seconds), trigger refresh
-    if (timeSinceLastSync > 60 * 1000 && connection.isConnected && refreshSheets) {
+    if (timeSinceLastSync > 60 * 1000 && connection.isConnected) {
       console.log("[Fresh-Reasoning] Data is stale, refreshing before AI processing...");
       setIsSyncing(true);
       try {
@@ -1802,7 +1803,7 @@ export default function Home() {
     
     // Guard clause: Don't re-trigger if Agent 2 (auditor) has failed
     const auditorActivity = agentActivities.find(a => a.agentId === "auditor");
-    if (auditorActivity?.status === "failed" || auditorActivity?.status === "error") {
+    if (auditorActivity?.status === "error") {
       console.warn("[Guard Clause] Agent 2 (Math Auditor) has failed. Skipping swarm re-execution to prevent flickering.");
       return;
     }
@@ -2808,7 +2809,7 @@ export default function Home() {
       // In a real implementation, you'd persist this to the data source
       if (isDemoMode && demoData) {
         setDemoData(optimizedData);
-      } else if (connection.isConnected && refreshSheets) {
+      } else if (connection.isConnected) {
         // For real data, trigger a refresh after repair
         setTimeout(() => {
           refreshSheets();
@@ -3789,7 +3790,13 @@ export default function Home() {
                 industry={verifiedIndustry}
                 activeConnectors={activeConnectors}
                 isWriteEnabled={isWriteEnabled}
-                recommendations={recommendations}
+                recommendations={(recommendations || []).map((r: any) => ({
+  ...r,
+  impact_analysis: r.impact_analysis ?? "Impact analysis pending.",
+  risk_level: r.risk_level ?? "medium",
+  confidence_score: r.confidence_score ?? 0.75,
+  one_click_action_payload: r.one_click_action_payload ?? null,
+}))}
                 sourceType={selectedSource === "CSV" ? "CSV" : selectedSource === "GOOGLE_SHEETS" ? "GOOGLE_SHEETS" : "CSV"}
                 target={selectedSource === "CSV" ? (pendingMapping?.fileName || "data.csv") : connection.sheetId || "unknown"}
                 onTerminalMessage={(msg) => {
@@ -3813,7 +3820,9 @@ export default function Home() {
                 onSuccess={(message) => {
                   success("Executive Dossier", message);
                 }}
-                agent2Failed={agentActivities.find(a => a.agentId === "auditor")?.status === "failed" || agentActivities.find(a => a.agentId === "auditor")?.status === "error"}
+                agent2Failed={
+                  agentActivities.find(a => a.agentId === "auditor")?.status === "error"
+                }
                 dataSourceHash={displayData ? JSON.stringify(displayData).slice(0, 100) : undefined}
               />
             )}
@@ -4511,7 +4520,13 @@ export default function Home() {
           <InsightPanel 
             persona={selectedPersona}
             dashboardState={displayData}
-            agent2Status={agentActivities.find(a => a.agentId === "auditor")?.status === "success" ? "PASS" : agentActivities.find(a => a.agentId === "auditor")?.status === "failed" ? "FAIL" : undefined}
+            agent2Status={
+              agentActivities.find(a => a.agentId === "auditor")?.status === "success"
+                ? "PASS"
+                : agentActivities.find(a => a.agentId === "auditor")?.status === "error"
+                ? "FAIL"
+                : undefined
+            }
           />
         )}
         </div>

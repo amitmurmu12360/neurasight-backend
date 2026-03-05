@@ -340,7 +340,7 @@ export function getPrioritizedMetrics(
   metrics.push({
     id: "cac",
     title: "Customer Acquisition Cost",
-    value: `${data.growth.cac.currency}${cacValue.toFixed(1)}`,
+    value: `${data.growth.cac.unit}${cacValue.toFixed(1)}`, 
     subValue: formatChange(cacChange, " efficiency"),
     status: data.growth.cac.status,
     trend: getTrend(-cacChange), // Lower CAC is better

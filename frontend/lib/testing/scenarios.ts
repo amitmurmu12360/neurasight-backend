@@ -49,13 +49,46 @@ export const SCENARIO_SAAS_HEALTHY: Scenario = {
       company: { name: "SaaS Company", stage: "growth" },
       financials: {
         arr: { value: 45.2, unit: "M", currency: "USD", growth_yoy: 28.5, status: "healthy" },
+      
         nrr: { value: 120, unit: "%", status: "healthy" },
-        burn_multiple: { value: 0.5, benchmark: 1.0, status: "healthy" },
+      
+        burn_multiple: {
+          value: 0.5,
+          benchmark: 1.0,
+          unit: "x",
+          status: "healthy"
+        },
+      
+        gross_margin: {
+          value: 78,
+          unit: "%",
+          status: "healthy"
+        }
       },
+      
       growth: {
         mqls: { value: 1240, growth_mom: 12.3, status: "healthy" },
-        cac: { value: 3200, currency: "USD", efficiency_gain: -8.0, status: "healthy" },
-        top_risk: "None",
+      
+        cac: {
+          value: 3200,
+          unit: "$",
+          efficiency_gain: -8.0,
+          status: "healthy"
+        },
+      
+        ltv: {
+          value: 12000,
+          unit: "$",
+          status: "healthy"
+        },
+      
+        roas: {
+          value: 3.8,
+          unit: "x",
+          status: "healthy"
+        },
+      
+        top_risk: "None"
       },
       sales: {
         deals_closed: { value: 142, period: "month" },
@@ -67,13 +100,40 @@ export const SCENARIO_SAAS_HEALTHY: Scenario = {
       company: { name: "SaaS Company", stage: "growth" },
       financials: {
         arr: { value: 45.2, unit: "M", currency: "USD", growth_yoy: 28.5, status: "healthy" },
+      
         nrr: { value: 120, unit: "%", status: "healthy" },
-        burn_multiple: { value: 0.5, benchmark: 1.0, status: "healthy" },
+      
+        burn_multiple: { value: 0.5, benchmark: 1.0, unit: "x", status: "healthy" },
+      
+        gross_margin: {
+          value: 76,
+          unit: "%",
+          status: "healthy"
+        }
       },
       growth: {
         mqls: { value: 1240, growth_mom: 12.3, status: "healthy" },
-        cac: { value: 3200, currency: "USD", efficiency_gain: -8.0, status: "healthy" },
-        top_risk: "None",
+      
+        cac: {
+          value: 3200,
+          unit: "$",
+          efficiency_gain: -8.0,
+          status: "healthy"
+        },
+      
+        ltv: {
+          value: 12000,
+          unit: "$",
+          status: "healthy"
+        },
+      
+        roas: {
+          value: 3.8,
+          unit: "x",
+          status: "healthy"
+        },
+      
+        top_risk: "None"
       },
       sales: {
         deals_closed: { value: 142, period: "month" },
@@ -85,13 +145,40 @@ export const SCENARIO_SAAS_HEALTHY: Scenario = {
       company: { name: "SaaS Company", stage: "growth" },
       financials: {
         arr: { value: 45.2, unit: "M", currency: "USD", growth_yoy: 28.5, status: "healthy" },
+      
         nrr: { value: 120, unit: "%", status: "healthy" },
-        burn_multiple: { value: 0.5, benchmark: 1.0, status: "healthy" },
+      
+        burn_multiple: { value: 0.5, benchmark: 1.0, unit: "x", status: "healthy" },
+      
+        gross_margin: {
+          value: 76,
+          unit: "%",
+          status: "healthy"
+        }
       },
       growth: {
         mqls: { value: 1240, growth_mom: 12.3, status: "healthy" },
-        cac: { value: 3200, currency: "USD", efficiency_gain: -8.0, status: "healthy" },
-        top_risk: "None",
+      
+        cac: {
+          value: 3200,
+          unit: "$",
+          efficiency_gain: -8.0,
+          status: "healthy"
+        },
+      
+        ltv: {
+          value: 12000,
+          unit: "$",
+          status: "healthy"
+        },
+      
+        roas: {
+          value: 3.8,
+          unit: "x",
+          status: "healthy"
+        },
+      
+        top_risk: "None"
       },
       sales: {
         deals_closed: { value: 142, period: "month" },
@@ -128,13 +215,32 @@ export const SCENARIO_SAAS_CRISIS: Scenario = {
       financials: {
         arr: { value: 12.8, unit: "M", currency: "USD", growth_yoy: -15.0, status: "critical" },
         nrr: { value: 35, unit: "%", status: "critical" },
-        burn_multiple: { value: 4.0, benchmark: 1.0, status: "critical" },
+        burn_multiple: { value: 4.0, benchmark: 1.0,unit: "x", status: "critical" },
+        gross_margin: {
+          value: 40,
+          unit: "%",
+          status: "critical"
+        }
       },
       growth: {
-        mqls: { value: 320, growth_mom: -28.0, status: "critical" },
-        cac: { value: 8500, currency: "USD", efficiency_gain: 65.0, status: "critical" },
-        top_risk: "High CAC, low MQLs",
-      },
+  mqls: { value: 320, growth_mom: -28.0, status: "critical" },
+
+  cac: { value: 8500, unit: "$", efficiency_gain: 65.0, status: "critical" },
+
+  ltv: {
+    value: 6000,
+    unit: "$",
+    status: "critical"
+  },
+
+  roas: {
+    value: 0.8,
+    unit: "x",
+    status: "critical"
+  },
+
+  top_risk: "High CAC, low MQLs",
+},
       sales: {
         deals_closed: { value: 28, period: "month" },
         velocity: { avg_cycle_days: 180, status: "critical" },
@@ -145,12 +251,34 @@ export const SCENARIO_SAAS_CRISIS: Scenario = {
       company: { name: "SaaS Company", stage: "crisis" },
       financials: {
         arr: { value: 12.8, unit: "M", currency: "USD", growth_yoy: -15.0, status: "critical" },
+      
         nrr: { value: 35, unit: "%", status: "critical" },
-        burn_multiple: { value: 4.0, benchmark: 1.0, status: "critical" },
+      
+        burn_multiple: { value: 4.0, benchmark: 1.0, unit: "x", status: "critical" },
+      
+        gross_margin: {
+          value: 40,
+          unit: "%",
+          status: "critical"
+        }
       },
       growth: {
         mqls: { value: 320, growth_mom: -28.0, status: "critical" },
-        cac: { value: 8500, currency: "USD", efficiency_gain: 65.0, status: "critical" },
+      
+        cac: { value: 8500, unit: "$", efficiency_gain: 65.0, status: "critical" },
+      
+        ltv: {
+          value: 6000,
+          unit: "$",
+          status: "critical"
+        },
+      
+        roas: {
+          value: 0.8,
+          unit: "x",
+          status: "critical"
+        },
+      
         top_risk: "High CAC, low MQLs",
       },
       sales: {
@@ -163,12 +291,34 @@ export const SCENARIO_SAAS_CRISIS: Scenario = {
       company: { name: "SaaS Company", stage: "crisis" },
       financials: {
         arr: { value: 12.8, unit: "M", currency: "USD", growth_yoy: -15.0, status: "critical" },
+      
         nrr: { value: 35, unit: "%", status: "critical" },
-        burn_multiple: { value: 4.0, benchmark: 1.0, status: "critical" },
+      
+        burn_multiple: { value: 4.0, benchmark: 1.0, unit: "x", status: "critical" },
+      
+        gross_margin: {
+          value: 40,
+          unit: "%",
+          status: "critical"
+        }
       },
       growth: {
         mqls: { value: 320, growth_mom: -28.0, status: "critical" },
-        cac: { value: 8500, currency: "USD", efficiency_gain: 65.0, status: "critical" },
+      
+        cac: { value: 8500, unit: "$", efficiency_gain: 65.0, status: "critical" },
+      
+        ltv: {
+          value: 6000,
+          unit: "$",
+          status: "critical"
+        },
+      
+        roas: {
+          value: 0.8,
+          unit: "x",
+          status: "critical"
+        },
+      
         top_risk: "High CAC, low MQLs",
       },
       sales: {
@@ -206,11 +356,31 @@ export const SCENARIO_RETAIL_GOLD: Scenario = {
       financials: {
         arr: { value: 243.16, unit: "M", currency: "USD", growth_yoy: 18.5, status: "healthy" },
         nrr: { value: 32.5, unit: "%", status: "healthy" },
-        burn_multiple: { value: 0.8, benchmark: 1.0, status: "healthy" },
+        burn_multiple: { value: 0.8, benchmark: 1.0, unit: "x", status: "healthy" },
+      
+        gross_margin: {
+          value: 52,
+          unit: "%",
+          status: "healthy"
+        }
       },
       growth: {
         mqls: { value: 15420, growth_mom: 8.2, status: "healthy" },
-        cac: { value: 45, currency: "USD", efficiency_gain: -5.0, status: "healthy" },
+      
+        cac: { value: 45, unit: "$", efficiency_gain: -5.0, status: "healthy" },
+      
+        ltv: {
+          value: 220,
+          unit: "$",
+          status: "healthy"
+        },
+      
+        roas: {
+          value: 3.2,
+          unit: "x",
+          status: "healthy"
+        },
+      
         top_risk: "None",
       },
       sales: {
@@ -224,11 +394,31 @@ export const SCENARIO_RETAIL_GOLD: Scenario = {
       financials: {
         arr: { value: 243.16, unit: "M", currency: "USD", growth_yoy: 18.5, status: "healthy" },
         nrr: { value: 32.5, unit: "%", status: "healthy" },
-        burn_multiple: { value: 0.8, benchmark: 1.0, status: "healthy" },
+        burn_multiple: { value: 0.8, benchmark: 1.0, unit: "x", status: "healthy" },
+      
+        gross_margin: {
+          value: 52,
+          unit: "%",
+          status: "healthy"
+        }
       },
       growth: {
         mqls: { value: 15420, growth_mom: 8.2, status: "healthy" },
-        cac: { value: 45, currency: "USD", efficiency_gain: -5.0, status: "healthy" },
+      
+        cac: { value: 45, unit: "$", efficiency_gain: -5.0, status: "healthy" },
+      
+        ltv: {
+          value: 220,
+          unit: "$",
+          status: "healthy"
+        },
+      
+        roas: {
+          value: 3.2,
+          unit: "x",
+          status: "healthy"
+        },
+      
         top_risk: "None",
       },
       sales: {
@@ -242,11 +432,31 @@ export const SCENARIO_RETAIL_GOLD: Scenario = {
       financials: {
         arr: { value: 243.16, unit: "M", currency: "USD", growth_yoy: 18.5, status: "healthy" },
         nrr: { value: 32.5, unit: "%", status: "healthy" },
-        burn_multiple: { value: 0.8, benchmark: 1.0, status: "healthy" },
+        burn_multiple: { value: 0.8, benchmark: 1.0, unit: "x", status: "healthy" },
+      
+        gross_margin: {
+          value: 52,
+          unit: "%",
+          status: "healthy"
+        }
       },
       growth: {
         mqls: { value: 15420, growth_mom: 8.2, status: "healthy" },
-        cac: { value: 45, currency: "USD", efficiency_gain: -5.0, status: "healthy" },
+      
+        cac: { value: 45, unit: "$", efficiency_gain: -5.0, status: "healthy" },
+      
+        ltv: {
+          value: 180,
+          unit: "$",
+          status: "healthy"
+        },
+      
+        roas: {
+          value: 3.4,
+          unit: "x",
+          status: "healthy"
+        },
+      
         top_risk: "None",
       },
       sales: {
@@ -284,12 +494,33 @@ export const SCENARIO_UNIVERSAL_GYM: Scenario = {
       financials: {
         arr: { value: 18.5, unit: "M", currency: "USD", growth_yoy: 15.0, status: "healthy" },
         nrr: { value: 95, unit: "%", status: "warning" },
-        burn_multiple: { value: 1.2, benchmark: 1.0, status: "warning" },
+        burn_multiple: { value: 1.2, benchmark: 1.0, unit: "x", status: "warning" },
+    
+        gross_margin: {
+          value: 65,
+          unit: "%",
+          status: "healthy"
+        }
       },
+    
       growth: {
         mqls: { value: 850, growth_mom: 8.0, status: "healthy" },
-        cac: { value: 120, currency: "USD", efficiency_gain: -10.0, status: "healthy" },
-        top_risk: "Retention below 100%",
+    
+        cac: { value: 120, unit: "$", efficiency_gain: -10.0, status: "healthy" },
+    
+        ltv: {
+          value: 600,
+          unit: "$",
+          status: "healthy"
+        },
+    
+        roas: {
+          value: 2.8,
+          unit: "x",
+          status: "healthy"
+        },
+    
+        top_risk: "Retention below 100%"
       },
       sales: {
         deals_closed: { value: 1250, period: "month" },
@@ -302,12 +533,32 @@ export const SCENARIO_UNIVERSAL_GYM: Scenario = {
       financials: {
         arr: { value: 18.5, unit: "M", currency: "USD", growth_yoy: 15.0, status: "healthy" },
         nrr: { value: 95, unit: "%", status: "warning" },
-        burn_multiple: { value: 1.2, benchmark: 1.0, status: "warning" },
+        burn_multiple: { value: 1.2, benchmark: 1.0, unit: "x", status: "warning" },
+      
+        gross_margin: {
+          value: 65,
+          unit: "%",
+          status: "healthy"
+        }
       },
       growth: {
         mqls: { value: 850, growth_mom: 8.0, status: "healthy" },
-        cac: { value: 120, currency: "USD", efficiency_gain: -10.0, status: "healthy" },
-        top_risk: "Retention below 100%",
+      
+        cac: { value: 120, unit: "$", efficiency_gain: -10.0, status: "healthy" },
+      
+        ltv: {
+          value: 600,
+          unit: "$",
+          status: "healthy"
+        },
+      
+        roas: {
+          value: 2.8,
+          unit: "x",
+          status: "healthy"
+        },
+      
+        top_risk: "Retention below 100%"
       },
       sales: {
         deals_closed: { value: 1250, period: "month" },
@@ -320,12 +571,32 @@ export const SCENARIO_UNIVERSAL_GYM: Scenario = {
       financials: {
         arr: { value: 18.5, unit: "M", currency: "USD", growth_yoy: 15.0, status: "healthy" },
         nrr: { value: 95, unit: "%", status: "warning" },
-        burn_multiple: { value: 1.2, benchmark: 1.0, status: "warning" },
+        burn_multiple: { value: 1.2, benchmark: 1.0, unit: "x", status: "warning" },
+      
+        gross_margin: {
+          value: 65,
+          unit: "%",
+          status: "healthy"
+        }
       },
       growth: {
         mqls: { value: 850, growth_mom: 8.0, status: "healthy" },
-        cac: { value: 120, currency: "USD", efficiency_gain: -10.0, status: "healthy" },
-        top_risk: "Retention below 100%",
+      
+        cac: { value: 120, unit: "$", efficiency_gain: -10.0, status: "healthy" },
+      
+        ltv: {
+          value: 600,
+          unit: "$",
+          status: "healthy"
+        },
+      
+        roas: {
+          value: 2.8,
+          unit: "x",
+          status: "healthy"
+        },
+      
+        top_risk: "Retention below 100%"
       },
       sales: {
         deals_closed: { value: 1250, period: "month" },

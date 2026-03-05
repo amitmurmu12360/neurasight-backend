@@ -33,7 +33,16 @@ interface ForensicHealerProps {
   formulaLogic?: Record<string, any>;
   persona?: string;
   onHealComplete?: () => void;
-  onTerminalMessage?: (message: { agent: string; message: string; statusCode: string }) => void;
+  onTerminalMessage?: (message: {
+    agent: string;
+    message: string;
+    statusCode: string;
+  }) => void;
+
+  // 👇 ADD THESE 3
+  displayData?: any;
+  recommendations?: any[];
+  industry?: string;
 }
 
 // =============================================================================

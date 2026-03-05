@@ -225,12 +225,18 @@ export const DEFAULT_DASHBOARD_DATA: DashboardState = {
     burn_multiple: {
       value: 0.9,
       benchmark: 1.5,
+      unit: "x",
       status: "Efficient (Industry avg is 1.5x)",
     },
     nrr: {
       value: 132,
       unit: "%",
       status: "World Class (Strong product-market fit)",
+    },
+    gross_margin: {   // ✅ ADD THIS
+      value: 75,
+      unit: "%",
+      status: "Strong SaaS margin profile",
     },
   },
   growth: {
@@ -241,10 +247,22 @@ export const DEFAULT_DASHBOARD_DATA: DashboardState = {
     },
     cac: {
       value: 246,
-      currency: "$",
+      unit: "$",
       efficiency_gain: -12,
       status: "Optimizing well",
     },
+    ltv: {                 // ✅ ADD
+      value: 1200,
+      unit: "$",
+      status: "Healthy unit economics",
+    },
+    roas: {                // ✅ ADD
+      value: 3.8,
+      unit: "%",
+
+      status: "Performing above target",
+    },
+    
     top_risk: "Elevated marketing burn in paid channels (Facebook/LinkedIn ads)",
   },
   sales: {
@@ -359,9 +377,16 @@ function mapRowsToDashboardState(rows: SheetRow[]): DashboardState {
         growth_yoy: getNum("arr_growth_yoy", 18),
         status: getStatus("arr", "Tracking"),
       },
+      gross_margin: {     // ✅ ADD
+        value: getNum("gross_margin", 75),
+        unit: "%",
+        status: getStatus("gross_margin", "Healthy"),
+      },
       burn_multiple: {
         value: getNum("burn_multiple", 0.9),
         benchmark: 1.5,
+        unit: "%",
+
         status: getStatus("burn_multiple", "Monitoring"),
       },
       nrr: {
@@ -378,9 +403,22 @@ function mapRowsToDashboardState(rows: SheetRow[]): DashboardState {
       },
       cac: {
         value: getNum("cac", 200),
-        currency: "$",
+        unit: "%",
+
         efficiency_gain: getNum("cac_efficiency", 0),
         status: getStatus("cac", "Monitoring"),
+      },
+      ltv: {                    // ✅ ADD
+        value: getNum("ltv", 1000),
+        unit: "%",
+
+        status: getStatus("ltv", "Healthy"),
+      },
+      roas: {                   // ✅ ADD
+        value: getNum("roas", 3),
+        unit: "%",
+
+        status: getStatus("roas", "Tracking"),
       },
       top_risk: getStr("top_risk", "No critical risks identified"),
     },

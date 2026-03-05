@@ -81,7 +81,13 @@ export function generateMockDashboardState(): DashboardState {
       burn_multiple: {
         value: Math.round(burnValue * 10) / 10,
         benchmark: 1.0,
+        unit: "x",
         status: burnStatus,
+      },
+      gross_margin: {                 // ✅ ADD THIS
+        value: 70 + Math.random() * 10,
+        unit: "%",
+        status: "Healthy",
       },
     },
     growth: {
@@ -92,10 +98,21 @@ export function generateMockDashboardState(): DashboardState {
       },
       cac: {
         value: cacValue,
-        currency: "USD",
+        unit: "%",
         efficiency_gain: Math.floor(Math.random() * 30) - 15, // -15% to 15%
         status: cacStatus,
       },
+      ltv: {                          // ✅ ADD
+        value: 1000 + Math.random() * 500,
+        unit: "%",
+        status: "Healthy",
+      },
+      roas: {                         // ✅ ADD
+        value: 2 + Math.random() * 2,
+        unit: "%",
+        status: "Stable",
+      },
+      
       top_risk: "Sample risk analysis placeholder",
     },
     sales: {

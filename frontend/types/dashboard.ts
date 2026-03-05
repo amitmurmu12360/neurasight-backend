@@ -27,6 +27,7 @@ export interface ARRMetric {
 export interface BurnMultipleMetric {
   value: number;
   benchmark: number;
+  unit: string;        // "x"
   status: string;
 }
 
@@ -36,10 +37,17 @@ export interface NRRMetric {
   status: string;
 }
 
+export interface GrossMarginMetric {
+  value: number;
+  unit: string;        // "%"
+  status: string;
+}
+
 export interface Financials {
   arr: ARRMetric;
   burn_multiple: BurnMultipleMetric;
   nrr: NRRMetric;
+  gross_margin: GrossMarginMetric;  // ✅ ADD
 }
 
 // =============================================================================
@@ -53,15 +61,30 @@ export interface MQLsMetric {
 
 export interface CACMetric {
   value: number;
-  currency: string;
+  unit: string;        // "$"
   efficiency_gain: number;
+  status: string;
+}
+
+export interface ROASMetric {
+  value: number;
+  unit: string;        // "x"
+  status: string;
+}
+
+export interface LTVMetric {
+  value: number;
+  unit: string;        // "$"
   status: string;
 }
 
 export interface Growth {
   mqls: MQLsMetric;
   cac: CACMetric;
+  ltv: LTVMetric;     // ✅ ADD
+  roas: ROASMetric;   // ✅ ADD
   top_risk: string;
+
 }
 
 // =============================================================================

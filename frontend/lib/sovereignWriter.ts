@@ -9,10 +9,17 @@ import type { DashboardState } from "@/types/dashboard";
 import { executionEngine, type FixPayload, type ExecutionResult } from "./executionAdapter";
 
 export interface Recommendation {
+  id?: string; // optional for compatibility
   title: string;
+  description?: string; // 👈 ADD THIS
+  priority?: "high" | "medium" | "low"; // 👈 ADD THIS
+  frameworkTag?: "SWOT" | "AARRR" | "MEDDIC" | "General"; // 👈 ADD THIS
+  persona?: any; // 👈 ADD THIS
+
   impact_analysis: string;
   risk_level: "low" | "medium" | "high";
   confidence_score: number;
+
   one_click_action_payload: {
     action_type: string;
     parameters: Record<string, unknown>;

@@ -725,11 +725,21 @@ export class Orchestrator {
           if (result.metadata?.message) {
             const terminalMsg = result.metadata.message as string;
             if (terminalMsg.includes("DETECTING OUTLIERS")) {
-              this.addActivity("auditor", "active", "[AGENT 2] DETECTING OUTLIERS VIA IQR METHOD...");
+              this.logActivity(
+                "auditor",
+                "Agent 2: Math Auditor",
+                "active",
+                "[AGENT 2] DETECTING OUTLIERS VIA IQR METHOD..."
+              );
             } else if (terminalMsg.includes("MATH VERIFIED")) {
               const confidenceMatch = terminalMsg.match(/(\d+\.?\d*)% CONFIDENCE/);
               const confidence = confidenceMatch ? confidenceMatch[1] : "99.98";
-              this.addActivity("auditor", "success", `[AGENT 2] MATH VERIFIED (${confidence}% CONFIDENCE).`);
+              this.logActivity(
+  "auditor",
+  "Agent 2: Math Auditor",
+  "success",
+  `[AGENT 2] MATH VERIFIED (${confidence}% CONFIDENCE).`
+);
             }
           }
           break;
